@@ -67,8 +67,35 @@
                 </connection>
             </fretala_read>
         </resources>
+        <sales>
+            <quote>
+                <item>
+                    <product_attributes>
+                        <fretala_vip_delivery />
+                    </product_attributes>
+                </item>
+            </quote>
+            <shipping>
+                <carriers>
+                    <fretala>
+                        <class>Uecommerce_Fretala_Model_Carrier_Fretala</class>
+                    </fretala>
+                </carriers>
+            </shipping>
+        </sales>
     </global>
     <adminhtml>
+        <events>
+            <controller_action_predispatch>
+                <observers>
+                    <fretala>
+                        <type>singleton</type>
+                        <class>fretala/observer</class>
+                        <method>checkSettings</method>
+                    </fretala>
+                </observers>
+            </controller_action_predispatch>
+        </events>
         <translate>
             <modules>
                 <fretala>
@@ -83,10 +110,12 @@
         <carriers>
             <fretala>
                 <active>1</active>
-                <model>fretala/fretala</model>
-                <title>Freta.la</title>
+                <model>fretala/carrier_fretala</model>
+                <title><![CDATA[Freta.lá]]></title>
                 <name>Hiperexpressa</name>
                 <report_error>1</report_error>
+                <client_id>ecommerce</client_id>
+                <client_secret>Q6eH4nxD</client_secret>
             </fretala>
         </carriers>
     </default>
