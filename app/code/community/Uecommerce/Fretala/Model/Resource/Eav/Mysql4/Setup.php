@@ -44,7 +44,7 @@ class Uecommerce_Fretala_Model_Resource_Eav_Mysql4_Setup extends Mage_Eav_Model_
                 'attributes' => array(
                     'fretala_vip_delivery' => array(
                         'group' => 'General',
-                        'label' => 'Entrega VIP Freta.lá',
+                        'label' => 'Freta.la Vip Delivery',
                         'type' => 'int',
                         'input' => 'select',
                         'default' => '1',

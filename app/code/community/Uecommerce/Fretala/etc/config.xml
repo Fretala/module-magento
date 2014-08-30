@@ -68,4 +68,15 @@
             </fretala_read>
         </resources>
     </global>
+    <adminhtml>
+        <translate>
+            <modules>
+                <fretala>
+                    <files>
+                        <default>Fretala.csv</default>
+                    </files>
+                </fretala>
+            </modules>
+        </translate>
+    </adminhtml>
 </config>
