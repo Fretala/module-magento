@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Uecommerce
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade the extension
+ * to newer versions in the future. If you wish to customize the extension
+ * for your needs please refer to http://www.uecommerce.com.br/ for more information
+ *
+ * @category   Uecommerce
+ * @package    Uecommerce_Fretala
+ * @copyright  Copyright (c) 2014 Uecommerce (http://www.uecommerce.com.br/)
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+
+/**
+ * Fretala module
+ *
+ * @category   Uecommerce
+ * @package    Uecommerce_Fretala
+ * @author     Uecommerce Dev Team
+ */
+-->
+<config>
+    <modules>
+        <Uecommerce_Fretala>
+            <version>1.0.0</version>
+        </Uecommerce_Fretala>
+    </modules>
+    <global>
+        <helpers>
+            <fretala>
+                <class>Uecommerce_Fretala_Helper</class>
+            </fretala>
+        </helpers>
+        <models>
+            <fretala>
+                <class>Uecommerce_Fretala_Model</class>
+            </fretala>
+        </models>
+        <resources>
+            <fretala_setup>
+                <setup>
+                    <module>Uecommerce_Fretala</module>
+                    <class>Uecommerce_Fretala_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </fretala_setup>
+            <fretala_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </fretala_write>
+            <fretala_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </fretala_read>
+        </resources>
+    </global>
+</config>
