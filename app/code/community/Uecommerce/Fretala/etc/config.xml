@@ -79,4 +79,15 @@
             </modules>
         </translate>
     </adminhtml>
+    <default>
+        <carriers>
+            <fretala>
+                <active>1</active>
+                <model>fretala/fretala</model>
+                <title>Freta.la</title>
+                <name>Hiperexpressa</name>
+                <report_error>1</report_error>
+            </fretala>
+        </carriers>
+    </default>
 </config>
