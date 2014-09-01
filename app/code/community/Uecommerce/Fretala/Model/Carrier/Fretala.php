@@ -93,6 +93,13 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b>', true);
 				break;
 
+				case 'NotFoundException':
+				Mage::logException($e);
+				Mage::log('Precificação - '.$e->getMessage());
+				Mage::log($route);
+				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', 'Sistema Freta.la fora do ar.', true);
+				break;
+
 				default:
 					# code...
 				break;

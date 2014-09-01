@@ -33,6 +33,8 @@ define("FRETALA_PRODUCTION_URL", "https://api.freta.la");
 class ValidationException extends Exception{}
 class BadRequestException extends Exception{}
 class InternalErrorException extends Exception{}
+class NotFoundException extends Exception{}
+
 
 class Uecommerce_Fretala_Model_Api_Fretala extends Mage_Core_Model_Abstract
 {
@@ -93,6 +95,11 @@ class Uecommerce_Fretala_Model_Api_Fretala extends Mage_Core_Model_Abstract
 	public function getCards() {
 		$this->authenticate();
 		return $this->performRequest("GET", "/cards");
+	}
+
+	public function getFrete($code) {
+		$this->authenticate();
+		return $this->performRequest("GET", "/fretes/code/".$code);
 	}
 
 	public function insertCard($card) {
@@ -161,10 +168,12 @@ class Uecommerce_Fretala_Model_Api_Fretala extends Mage_Core_Model_Abstract
 			$err_msg = property_exists($json, 'message') ? $json->message : $json->error_description;
 			if($status == 422) {
 				throw new ValidationException($err_msg);
-			} else if($status = 400) {
+			} else if($status == 400) {
 				throw new BadRequestException($err_msg);
-			} else if($status = 500) {
+			} else if($status == 500) {
 				throw new InternalErrorException($err_msg);
+			} else if($status == 404) {
+				throw new NotFoundException($err_msg);
 			} else {
 				throw new Exception($err_msg);
 			}
