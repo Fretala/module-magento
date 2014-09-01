@@ -33,48 +33,66 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 	protected $_code = 'fretala';
 
 	public function collectRates(Mage_Shipping_Model_Rate_Request $request) {
-		if(!$this->getConfigData('active') || !$this->isValidProductsInCart()){
+		//Mage::log(Mage::getStoreConfig('shipping/origin/street_line1',Mage::app()->getStore()->getStoreId()));
+		$storeId = Mage::app()->getStore()->getStoreId();
+		if(!$this->getConfigData('active') || !$this->isValidProductsInCart() 
+			|| !Mage::helper('fretala')->validStreetNumber(Mage::getStoreConfig('shipping/origin/street_line1',$storeId))
+			)
+		{
 			return false;
 		}
 		$result = Mage::getModel('shipping/rate_result');
+		$route = array(
+			"from" => array(
+					//"number" => "234",
+				"street" => Mage::getStoreConfig('shipping/origin/street_line1',$storeId),
+				"city" => Mage::getStoreConfig('shipping/origin/city',$storeId), 
+				"state" => Mage::getStoreConfig('shipping/origin/region_id',$storeId)
+				),
+			"to" => $this->getAreaQuote()->getShippingAddress()->getPostcode()
+			);
 		try{
 			$fretelaApi = Mage::getModel('fretala/api_fretala');
-			$route = array(
-				"from" => array(
-					//"number" => "234",
-					"street" => Mage::getStoreConfig('shipping/origin/street_line1'),
-					"city" => Mage::getStoreConfig('shipping/origin/city'), 
-					"state" => Mage::getStoreConfig('shipping/origin/region_id')
-					),
-				"to" => $this->getAreaQuote()->getShippingAddress()->getPostcode()
-				);
+			
 			$shipping = $fretelaApi->cost($route);
-			Mage::log($shipping);
+			//Mage::log($shipping);
 			$shipping->price = $shipping->price/100;
 			$method = Mage::getModel('shipping/rate_result_method');
 			$method->setCarrier($this->_code)
 			->setCarrierTitle($this->getConfigData('title'))
 			->setMethod('fretala')
-			->setMethodTitle($this->getConfigData('name'))
+			->setMethodTitle($this->getConfigData('name').' ('.$shipping->deadline.') - ')
 			->setPrice($shipping->price)
-			->setCost($shipping-price);
+			->setCost($shipping->price);
+
 
 			$result->append($method);
 
 		}catch(Exception $e){
 			switch (get_class($e)) {
 				case 'ValidationException':
-				Mage::log('ValidationException: '.$e->getMessage());
+				//Mage::log('ValidationException: '.$e->getMessage());
+				if(Mage::getStoreConfig('carriers/fretala/notification_validation',$storeId)){
+					$dados = 'Para o cep: '.$route['to'];
+					Mage::getModel('adminnotification/inbox')->add(3, 'Frete.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b><br> '.$dados, '', true);
+				}
 				break;
 
 				case 'BadRequestException':
-				Mage::log('BadRequestException: '.$e->getMessage());
+				Mage::logException($e);
+				Mage::log('Precificação - '.$e->getMessage());
+				Mage::log($route);
+				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', '<b>Erro de conexão</b>', true);
+				
 				break;
 
 				case 'InternalErrorException':
-				Mage::log('InternalErrorException: '.$e->getMessage());
+				Mage::logException($e);
+				Mage::log('Precificação - '.$e->getMessage());
+				Mage::log($route);
+				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b>', true);
 				break;
-				
+
 				default:
 					# code...
 				break;
@@ -82,7 +100,7 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 		}
 
 		return $result;
-		
+
 	}
 
 	public function getAllowedMethods() {

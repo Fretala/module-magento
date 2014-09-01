@@ -140,7 +140,7 @@ class Uecommerce_Fretala_Model_Api_Fretala extends Mage_Core_Model_Abstract
 			CURLOPT_HEADER => false,
 			CURLOPT_URL => $this->url,
 			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_TIMEOUT => 10,
+			CURLOPT_TIMEOUT => 60,
 			CURLOPT_URL => $this->url . $path
 			);
 

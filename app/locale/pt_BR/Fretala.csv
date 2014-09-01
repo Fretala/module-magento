@@ -5,3 +5,4 @@
 "Highly recommend leaving enabled","Altamente recomendável deixar habilitado"
 "There is something wrong with the address settings from the store, %s click here check %s","Há algo errado com as configurações de endereço da loja, %s clique aqui e verifique. %s"
 "The format of the postcode should be xxxxx-xxx or xxxxxxxx","O formato do cep deve ser xxxxx-xxx ou xxxxxxxx"
+"The format of the address of your shop is incorrect, please follow the following format: Street, number","O formato do endereço da sua loja está incorreto, por favor siga o seguinte formato: Rua Rio de Janeiro, 234"

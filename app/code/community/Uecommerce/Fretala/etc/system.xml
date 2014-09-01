@@ -40,8 +40,8 @@
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <comment><![CDATA[<div style="padding:5px 10px; background:#359ade;color:white"><img style="vertical-align:middle;width:75px" src="/skin/adminhtml/default/default/images/logo-icon.png"/><img src="/skin/adminhtml/default/default/images/logo2.png" style="vertical-align:middle" /><br><p style="margin-left:4px">A MAIS PODEROSA PLATAFORMA DE FRETES URBANOS EXPRESSOS.
-</p><br><b>INFORMAÇÕES</b><br><ul><li> - Antes de fazer o pedido de frete, é necessário inserir um cartão de crédito para ser utilizado. <a href="https://sandbox.freta.la/dashboard" style="color:white" target="_blank">Clique aqui</a> para inserir seu cartão.</li>
-<li> - Verifique se os dados de sua loja estão corretos, pois é com base neles que o <b>Freta.lá</b> retornará para seu cliente a melhor escolha de frete. Verifique na seção: Sistema > Configurações > Configurações de Entrega.</li><li> - É altamente recomendável que a opção abaixo sobre alertas de erros esteja marcada como "Sim" e o campo e-mail preenchido, pois somente dessa maneira você será alertado. O cartão pode não passar, por exemplo, e ser necessário inserir outro.</li></ul></div>]]></comment>
+</p><br><b>INFORMAÇÕES</b><br><ul><li> - Antes de fazer o pedido de frete, é necessário inserir um cartão de crédito para ser utilizado. <a href="https://freta.la/dashboard" style="color:white" target="_blank">Clique aqui</a> para inserir seu cartão.</li>
+<li> - Verifique se os dados de sua loja estão corretos, pois é com base neles que o <b>Freta.lá</b> retornará para seu cliente a melhor escolha de frete. Verifique na seção: Sistema > Configurações > Configurações de Entrega.</li></ul></div>]]></comment>
                     <fields>
                     	<mode_heading translate="label">
                             <label>Settings</label>
@@ -119,18 +119,45 @@
                             <show_in_store>1</show_in_store>
                         </login_password>
                         <reports_heading translate="label">
-                            <label>Report Error</label>
+                            <label>Error Notifications</label>
                             <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
                             <sort_order>20</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>0</show_in_store>
                         </reports_heading>
-                        <report_error translate="label">
-                            <label>Rerport Errors via E-mail</label>
+                        <notification_validation>
+                            <label>Notification of Validation</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>21</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notification_validation>
+                        <!--<notification_badrequest>
+                            <label>Notification of Bad Request</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>22</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notification_badrequest>
+                        <notification_internalerror>
+                            <label>Notification of Internal Error</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>23</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </notification_internalerror>-->
+                        <!--<report_error translate="label">
+                            <label>Rerport Errors via E-mail</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>24</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
@@ -139,12 +166,12 @@
                         <report_email translate="label">
                             <label>Email</label>
                             <frontend_type>text</frontend_type>
-                            <sort_order>22</sort_order>
+                            <sort_order>25</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <depends><report_error>1</report_error></depends>
-                        </report_email>
+                        </report_email>-->
                    	</fields>
 				</fretala>
 			</groups>

@@ -83,6 +83,16 @@
                 </carriers>
             </shipping>
         </sales>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <fretala>
+                        <class>fretala/observer</class>
+                        <method>createShipping</method>
+                    </fretala>
+                </observers>
+            </sales_order_place_after>
+        </events>
     </global>
     <adminhtml>
         <events>
