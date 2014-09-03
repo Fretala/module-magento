@@ -74,7 +74,7 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 				//Mage::log('ValidationException: '.$e->getMessage());
 				if(Mage::getStoreConfig('carriers/fretala/notification_validation',$storeId)){
 					$dados = 'Para o cep: '.$route['to'];
-					Mage::getModel('adminnotification/inbox')->add(3, 'Frete.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b><br> '.$dados, '', true);
+					Mage::getModel('adminnotification/inbox')->add(3, 'Freta.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b><br> '.$dados, '', true);
 				}
 				break;
 
@@ -82,7 +82,7 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 				Mage::logException($e);
 				Mage::log('Precificação - '.$e->getMessage());
 				Mage::log($route);
-				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', '<b>Erro de conexão</b>', true);
+				Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá - Erro de validação na precificação', '<b>Erro de conexão</b>', true);
 				
 				break;
 
@@ -90,14 +90,14 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 				Mage::logException($e);
 				Mage::log('Precificação - '.$e->getMessage());
 				Mage::log($route);
-				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b>', true);
+				Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá - Erro de validação na precificação', 'Retorno: <b>'.$e->getMessage().'</b>', true);
 				break;
 
 				case 'NotFoundException':
 				Mage::logException($e);
 				Mage::log('Precificação - '.$e->getMessage());
 				Mage::log($route);
-				Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na precificação', 'Sistema Freta.la fora do ar.', true);
+				Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá - Erro de validação na precificação', 'Sistema Freta.la fora do ar.', true);
 				break;
 
 				default:
