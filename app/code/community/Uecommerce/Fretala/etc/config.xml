@@ -41,6 +41,11 @@
                 <class>Uecommerce_Fretala_Helper</class>
             </fretala>
         </helpers>
+        <blocks>
+            <fretala>
+                <class>Uecommerce_Fretala_Block</class>
+            </fretala>
+        </blocks>
         <models>
             <fretala>
                 <class>Uecommerce_Fretala_Model</class>
@@ -94,6 +99,17 @@
             </sales_order_place_after>
         </events>
     </global>
+    <admin>
+        <routers>
+            <fretala>
+                <use>admin</use>
+                <args>
+                    <module>Uecommerce_Fretala</module>
+                    <frontName>fretala</frontName>
+                </args>
+            </fretala>
+        </routers>
+    </admin>
     <adminhtml>
         <events>
             <controller_action_predispatch>
@@ -115,6 +131,13 @@
                 </fretala>
             </modules>
         </translate>
+        <layout>
+            <updates>
+                <fretala>
+                    <file>fretala.xml</file>
+                </fretala>
+            </updates>
+        </layout>
     </adminhtml>
     <default>
         <carriers>

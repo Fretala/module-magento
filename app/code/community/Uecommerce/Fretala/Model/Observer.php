@@ -106,20 +106,23 @@ class Uecommerce_Fretala_Model_Observer
 				}catch(Exception $e){
 					switch (get_class($e)) {
 						case 'ValidationException':
-						Mage::getModel('adminnotification/inbox')->add(3, 'Frete.lá - Erro de validação na criação do frete', 'Retorno: <b>'.$e->getMessage().'</b><br>','', true);
+						Mage::getModel('adminnotification/inbox')->add(3, 'Freta.lá - Erro de validação na criação do frete', 'Retorno: <b>'.$e->getMessage().'</b><br>','', true);
 						break;
 
 						case 'BadRequestException':
-						Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na criação do frete', '<b>Erro de conexão:</b> - '.$e->getMessage(),'', true);
+						Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá - Erro na criação do frete', '<b>Erro de conexão:</b> - '.$e->getMessage(),'', true);
 
 						break;
 
 						case 'InternalErrorException':
-						Mage::getModel('adminnotification/inbox')->add(1, 'Frete.lá - Erro de validação na criação do frete', 'Retorno: <b>'.$e->getMessage().'</b>', '',true);
+						Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá - Erro na criação do frete', 'Retorno: <b>'.$e->getMessage().'</b>', '',true);
 						break;
 
+						case 'NotFoundException':
+						Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá -Erro na criação do frete', 'Retorno: <b>'.$e->getMessage().'</b>');
+
 						default:
-					# code...
+						Mage::getModel('adminnotification/inbox')->add(1, 'Freta.lá - Erro na criação do frete', 'Retorno: <b>'.$e->getMessage().'</b>');
 						break;
 					}
 					Mage::logException($e);

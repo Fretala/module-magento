@@ -1,0 +1,42 @@
+<?php 
+$fretala = $this->fretalaShippingExists();
+if(!$fretala): ?>
+	<div id="fretala_container" style="border: 1px solid #FFD967 !important;background: url('<?php echo $this->getSkinUrl('images/note_msg_icon.gif'); ?>') no-repeat scroll 5px 5px #FFFBF0 !important;color: #3D6611 !important;padding:5px 10px 10px 25px; margin-bottom:5px;">
+		<?php echo $this->__('This request has not yet created the freight Freta.lá');  ?>
+		<br/>
+		<button id="fretala" onclick="createFretala();" title="<?php echo $this->__('Create freight in Freta.la'); ?>" type="button" class="scalable go" style=""><span><span><span><?php echo $this->__('Create freight in Freta.la'); ?></span></span></span></button>
+		<br>
+		
+	</div>
+	<script type="text/javascript">
+	paramsCreate = <?php echo $this->getParamsCreate(); ?>;
+	
+	function createFretala(){
+		new Ajax.Request('<?php echo Mage::helper('adminhtml')->getUrl('fretala/adminhtml_fretala/createshipping') ?>',
+		{
+			method:'post',		
+			parameters: paramsCreate,
+			onSuccess: function(transport) {
+                            if (transport.responseText != 0) {
+                                	if(transport.responseText){
+                                		$('fretala_container').update('<?php echo $this->__("Shipping created!") ?>');
+                                	}
+
+                                } else {
+                                    alert('falha');
+                                }
+                            }	
+			
+			}
+		);
+		return false;
+	}
+	</script>
+<?php endif;?>
+<?php if($fretala == 'error'): ?>
+	<div style="padding: 5px 5px 5px 25px; font-weight:bold; background: url('<?php echo $this->getSkinUrl('images/error_msg_icon.gif'); ?>') no-repeat scroll 5px 5px #FAEBE7 !important;border: 1px solid #F16048 !important;
+color: #DF280A !important;margin-bottom:5px">
+		<?php echo $this->__('There was an error communicating with the webservice Freta.la. Please check your notifications.'); ?>
+	</div>
+<?php endif; ?>
+
