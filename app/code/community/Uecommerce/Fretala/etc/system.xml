@@ -34,12 +34,12 @@
 		<carriers>
 			<groups>
 				<fretala>
-					<label><![CDATA[<img src="http://uecommerce.com.br/magento/skin/adminhtml/default/default/images/logo2.png" width="60"/> ]]></label>
+					<label><![CDATA[<img src="https://freta.la/images/magento/logo2.png" width="60"/> ]]></label>
 					<sort_order>0</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
-                    <comment><![CDATA[<div style="padding:5px 10px; background:#359ade;color:white"><img style="vertical-align:middle;width:75px" src="http://uecommerce.com.br/magento/skin/adminhtml/default/default/images/logo-icon.png"/><img src="http://uecommerce.com.br/magento/skin/adminhtml/default/default/images/logo2.png" style="vertical-align:middle" /><br><p style="margin-left:4px">A MAIS PODEROSA PLATAFORMA DE FRETES URBANOS EXPRESSOS.
+                    <comment><![CDATA[<div style="padding:5px 10px; background:#359ade;color:white"><img style="vertical-align:middle;width:75px" src="https://freta.la/images/magento/logo-icon.png"/><img src="https://freta.la/images/magento/logo2.png" style="vertical-align:middle" /><br><p style="margin-left:4px">A MAIS PODEROSA PLATAFORMA DE FRETES URBANOS EXPRESSOS.
 </p><br><b>INFORMAÇÕES</b><br><ul><li> - Antes de fazer o pedido de frete, é necessário inserir um cartão de crédito para ser utilizado. <a href="https://freta.la/dashboard" style="color:white" target="_blank">Clique aqui</a> para inserir seu cartão.</li>
 <li> - Verifique se os dados de sua loja estão corretos, pois é com base neles que o <b>Freta.lá</b> retornará para seu cliente a melhor escolha de frete. Verifique na seção: Sistema > Configurações > Configurações de Entrega.</li></ul></div>]]></comment>
                     <fields>
