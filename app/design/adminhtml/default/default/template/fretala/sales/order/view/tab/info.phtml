@@ -60,7 +60,9 @@
                 <h4 class="icon-head head-shipping-method"><?php echo Mage::helper('sales')->__('Shipping &amp; Handling Information') ?></h4>
             </div>
             <fieldset>
+            <?php if(strpos($_order->getShippingDescription(),'Freta.lá') !== false): ?>
                 <?php echo $this->getChildHtml('fretala'); ?>
+            <?php endif; ?>
                 <?php  if ($_order->getTracksCollection()->count()) : ?>
                 <a href="#" id="linkId" onclick="popWin('<?php echo $this->helper('shipping')->getTrackingPopupUrlBySalesModel($_order) ?>','trackorder','width=800,height=600,resizable=yes,scrollbars=yes')" title="<?php echo $this->__('Track Order') ?>"><?php echo $this->__('Track Order') ?></a>
                 <br/>

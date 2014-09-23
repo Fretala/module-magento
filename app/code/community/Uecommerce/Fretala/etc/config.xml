@@ -32,7 +32,7 @@
 <config>
     <modules>
         <Uecommerce_Fretala>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </Uecommerce_Fretala>
     </modules>
     <global>
