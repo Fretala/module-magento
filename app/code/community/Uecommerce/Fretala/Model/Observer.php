@@ -84,24 +84,29 @@ class Uecommerce_Fretala_Model_Observer
 				}
 				$streetStore = Mage::helper('fretala')->validStreetNumber($this->getShippingConfig('street_line1'));
 
-				$frete = array(
-					"id" => $order->getIncrementId(),
-					"productValue" => $order->getSubtotal()*100,
-					"from" => array(
-						"number" => (int)$streetStore[1],
-						"street" => $streetStore[0],
-						"city" => $this->getShippingConfig('city'), 
-						"state" => $this->getShippingConfig('region_id')
-						),
-					"to" => array(
-						//"number" => "2500",
-						"street" => $customerStreet,
-						"city" => $order->getShippingAddress()->getCity(), 
-						"state" => $order->getShippingAddress()->getRegion()
-						)
-					);
-				
-				try{
+                $frete = array(
+                    "id" => $order->getIncrementId(),
+                    "productValue" => $order->getSubtotal()*100,
+                    "from" => array(
+                        "name" => Mage::app()->getStore()->getName(),
+                        "cep" => preg_replace("/[^0-9]/", "",Mage::getStoreConfig('shipping/origin/postcode',Mage::app()->getStore()->getStoreId())),
+                        "number" => (int)$streetStore[1],
+                        "street" => $streetStore[0],
+                        "city" => $this->getShippingConfig('city'),
+                        "state" => $this->getShippingConfig('region_id')
+                    ),
+                    "to" => array(
+                        //"number" => "2500",
+                        "name" => $order->getCustomerName(),
+                        "street" => $customerStreet,
+                        "city" => $order->getShippingAddress()->getCity(),
+                        "state" => $order->getShippingAddress()->getRegion(),
+                        "cep" => preg_replace("/[^0-9]/", "",$order->getShippingAddress()->getPostcode())
+                    )
+                );
+
+
+                try{
 					Mage::getSingleton('fretala/api_fretala')->insertFrete($frete);
 				}catch(Exception $e){
 					switch (get_class($e)) {

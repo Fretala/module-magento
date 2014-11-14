@@ -118,7 +118,8 @@ class Uecommerce_Fretala_Model_Api_Fretala extends Mage_Core_Model_Abstract
 	}
 
 	public function cost($cost) {
-		return $this->performRequest("POST", "/fretes/cost", json_encode($cost));
+        $this->authenticate();
+        return $this->performRequest("POST", "/fretes/cost", json_encode($cost));
 	}
 
 	private function buildHeaders($auth = false) {

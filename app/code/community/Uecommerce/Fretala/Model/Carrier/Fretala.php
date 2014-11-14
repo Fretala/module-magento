@@ -43,12 +43,7 @@ class Uecommerce_Fretala_Model_Carrier_Fretala extends Mage_Shipping_Model_Carri
 		}
 		$result = Mage::getModel('shipping/rate_result');
 		$route = array(
-			"from" => array(
-					//"number" => "234",
-				"street" => Mage::getStoreConfig('shipping/origin/street_line1',$storeId),
-				"city" => Mage::getStoreConfig('shipping/origin/city',$storeId), 
-				"state" => Mage::getStoreConfig('shipping/origin/region_id',$storeId)
-				),
+			"from" => Mage::getStoreConfig('shipping/origin/postcode',Mage::app()->getStore()->getStoreId()),
 			"to" => $this->getAreaQuote()->getShippingAddress()->getPostcode()
 			);
 		try{
